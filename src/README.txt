@@ -1,0 +1,1 @@
+Execute the solutions using `ts-node -r tsconfig-paths/register script.ts`
