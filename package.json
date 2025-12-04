@@ -12,9 +12,14 @@
     "@types/node": "^24.10.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.0.15"
   },
   "dependencies": {
     "csv-parse": "^6.1.0"
+  },
+  "scripts": {
+    "test:day": "vitest run"
   }
 }
