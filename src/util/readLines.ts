@@ -1,8 +1,8 @@
 import fs from "fs";
 import readline from "readline";
 
-export async function* readLines(path: string): AsyncGenerator<string> {
-    const fileStream = fs.createReadStream(path, {
+export async function* readLines(filePath: string): AsyncGenerator<string> {
+    const fileStream = fs.createReadStream(filePath, {
         encoding: "utf8",
     });
 

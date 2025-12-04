@@ -1,6 +1,7 @@
 import { readLines } from "@/util/readLines";
+import path from "node:path";
 
-const INPUT_FILE = "./input.txt";
+const INPUT_FILE = path.resolve(__dirname, 'input.txt');
 const POINTER_START = 50
 
 async function main(): Promise<number> {
