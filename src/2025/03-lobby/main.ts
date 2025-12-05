@@ -19,8 +19,8 @@ function parseLine(line: string): number[] {
     return line.split('').map(Number)
 }
 
-function calculateMaxJoltage(joltages: number[]): number {
-    // find max thats not the last element
+function calculateMaxJoltage(joltages: number[], nBatteries: number): number {
+    // find max thats not n from last element
     let max = 0
     let maxIndex = -1
     for (let i = 0; i < joltages.length - 1; i++) {
@@ -40,5 +40,9 @@ function calculateMaxJoltage(joltages: number[]): number {
 
     return max * 10 + secondMax
 }
+
+// part 2: can we recursively find the max joltage - reducing the N of batteries each step?
+// Only continuing while the length of the array is > N
+// return early when the length of the array gets <= N
 
 main().then(console.log)
