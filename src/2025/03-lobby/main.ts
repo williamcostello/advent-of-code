@@ -2,7 +2,7 @@ import { readLines } from '@/util/readLines'
 import { getOptimalJoltages, calculateMaxJoltage, convertJoltagesArrayToNumber} from './03'
 import path from 'node:path'
 
-const INPUT_FILE = path.resolve(__dirname, 'test.txt')
+const INPUT_FILE = path.resolve(__dirname, 'input.txt')
 
 async function main(): Promise<number[]> {
     const lines = readLines(INPUT_FILE)
