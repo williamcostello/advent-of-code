@@ -1,31 +1,35 @@
 import path from 'node:path'
 import { readLines } from "@/util/readLines";
-import { parseInput, getAdjacentCells } from "./04";
+import {getAdjacentCells, parseFullInput, removeMarkedCells} from "./04";
 
 const INPUT_FILE = path.resolve(__dirname, 'input.txt')
 
+// i dont like this code either
 async function main(): Promise<number> {
     const lines = readLines(INPUT_FILE);
 
-    const firstLine = parseInput((await lines.next()).value);
-    const lineBuffer: string[][] = [
-        Array(firstLine.length).fill("."),
-        firstLine
-    ]
+    const parsed = await parseFullInput(lines)
 
     let accessibleRolls = 0
-    for await (const line of lines) {
-        const input = parseInput(line);
+    let isRollsRemoved = false
+    do {
+        let removedRolls = 0
 
-        lineBuffer.push(input)
+        for (let i = 1; i < parsed.length - 1; i++) {
+            const lineBuffer = [
+                parsed[i - 1],
+                parsed[i],
+                parsed[i + 1]
+            ]
 
-        accessibleRolls += handleBuffer(lineBuffer)
+            const change = handleBuffer(lineBuffer)
+            removedRolls += change
+        }
 
-        lineBuffer.shift()
-    }
-
-    lineBuffer.push(Array(firstLine.length).fill("."))
-    accessibleRolls += handleBuffer(lineBuffer)
+        if (removedRolls === 0) break;
+        accessibleRolls += removedRolls
+        isRollsRemoved = true
+    } while (isRollsRemoved)
 
     return accessibleRolls
 }
@@ -42,6 +46,7 @@ function handleBuffer(buffer: string[][]) {
 
         if (nToiletRolls < 4) {
             accessibleRolls++
+            middleLine[i] = "x"
         }
     }
 
